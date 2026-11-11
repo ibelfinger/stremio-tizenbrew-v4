@@ -268,7 +268,7 @@
   window.addEventListener('resize', applyScale);
 
   // Chromium 47 has no CSS custom properties: swap the shell stylesheet for a copy with var() pre-resolved.
-  var CSS_FIX = window.__cssFixUrl || 'http://192.168.100.212:8099/app/blob.es5.css';
+  var CSS_FIX = window.__cssFixUrl || 'https://cdn.jsdelivr.net/gh/ibelfinger/stremio-tizenbrew-v4@main/app/blob.es5.css';
   function swapCss() {
     var links = document.querySelectorAll('link[rel="stylesheet"]');
     for (var i = 0; i < links.length; i++) {
