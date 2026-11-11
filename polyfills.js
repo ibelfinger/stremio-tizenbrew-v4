@@ -294,6 +294,14 @@
   }
   addNavSections();
 
+  // No section sits above the content, so the remote can never reach the search field.
+  // When UP has nowhere to go, jump to search instead.
+  document.addEventListener('sn:navigatefailed', function (e) {
+    if (!e.detail || e.detail.direction !== 'up') return;
+    var f = document.getElementById('global-search-field');
+    if (f && f.getBoundingClientRect().width > 0 && document.activeElement !== f) f.focus();
+  }, true);
+
   // Login/intro screen: its inputs and buttons are mouse-only in the shell (no tabindex, no section).
   // While it is visible, make them focusable, register a self-contained section and land the focus inside.
   var introActive = false;
