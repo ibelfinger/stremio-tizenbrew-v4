@@ -270,6 +270,7 @@
   // Chromium 47 has no CSS custom properties: swap the shell stylesheet for a copy with var() pre-resolved.
   var CSS_FIX = window.__cssFixUrl || 'https://cdn.jsdelivr.net/gh/ibelfinger/stremio-tizenbrew-v4@main/app/blob.es5.css';
   function swapCss() {
+    if (window.CSS && CSS.supports && CSS.supports('--a', '0')) return; // only Chromium <49 needs the pre-resolved copy
     var links = document.querySelectorAll('link[rel="stylesheet"]');
     for (var i = 0; i < links.length; i++) {
       if (/blob\.css/.test(links[i].getAttribute('href') || '') && links[i].getAttribute('data-fixed') !== '1') {
